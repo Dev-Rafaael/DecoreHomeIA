@@ -4,9 +4,11 @@
 import * as cdk from 'aws-cdk-lib';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as sqs from "aws-cdk-lib/aws-sqs";
-import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import { createLambda } from './lambdas/createLambda';
+import { registerProductRoutes } from './routes/productRoutes';
+import { commonEnv } from './config/env';
 
 export class ProductStack extends cdk.Stack {
     // cria constructor de scope e id usando super 
@@ -22,7 +24,7 @@ export class ProductStack extends cdk.Stack {
                 allowHeaders: ["*"]
             }
         })
-// cria dlq 
+        // cria dlq 
         const dlq = new sqs.Queue(this, 'ProductDlq')
         // SQS  
         const productQueue = new sqs.Queue(this, 'ProductQueue', {
@@ -31,87 +33,96 @@ export class ProductStack extends cdk.Stack {
                 maxReceiveCount: 3
             }
         })
-// cria as apigateway 
-        const createProduct = new lambdaNode.NodejsFunction(this, 'CreateProduct', {
-            entry: 'lambda/Products/createProductHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                QUEUE_URL: productQueue.queueUrl
-            }
-        })
-
-           
-        const findAllProduct = new lambdaNode.NodejsFunction(this, 'FindAllProduct', {
-            entry: 'lambda/Products/findAllProductHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-            }
-        })
-
-        const UpdateProduct = new lambdaNode.NodejsFunction(this, 'UpdateProduct', {
-            entry: 'lambda/Products/updateProductHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                QUEUE_URL:productQueue.queueUrl,
-            }
-        })
-
-        const deleteProduct = new lambdaNode.NodejsFunction(this, 'DeleteProduct', {
-            entry: 'lambda/Products/deleteProductHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                QUEUE_URL:productQueue.queueUrl,
-            }
-        })  
-
-
-         // SQS 
-        productQueue.grantSendMessages(createProduct)
-        productQueue.grantSendMessages(UpdateProduct)
-        productQueue.grantSendMessages(deleteProduct)
-
-        
-        // API GATEWAY 
-        const products = api.root.addResource('products')
-        products.addMethod('POST', new apigateway.LambdaIntegration(createProduct))
-        products.addMethod('GET', new apigateway.LambdaIntegration(findAllProduct))
-
-        const product = products.addResource(`{id}`)
-
-        product.addMethod('PUT', new apigateway.LambdaIntegration(UpdateProduct))
-        product.addMethod('DELETE', new apigateway.LambdaIntegration(deleteProduct))
-
-        // WORKER 
-        const worker = new lambdaNode.NodejsFunction(this, 'ProductWorker', {
-            entry: 'lambda/workers/productsWorker.ts',
-            timeout: cdk.Duration.seconds(30)
-        })
-
-        worker.addEventSource(new eventSources.SqsEventSource(productQueue))
-
-
-        // S3 
-
-        // CRIAR LAMBDA 
-
+        // BUCKET 
         const bucket = new s3.Bucket(this, 'ProductsBucket', {
             removalPolicy: cdk.RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
             publicReadAccess: false
         })
-        // CRIAR API GATEWAY DE S3 
-        const uploadUrlProductsFn = new lambdaNode.NodejsFunction(this, 'UploadUrlProductsFn', {
-            entry: 'lambda/Products/generateUrlProductsHandler.ts',
+
+        // LAMBDA 
+        const createProduct = createLambda({
+            scope: this,
+            id: 'CreateProduct',
+            entry: 'lambda/products/createProductHandler.ts',
             environment: {
-                AWS_REGION: process.env.AWS_REGION!,
-                BUCKET_NAME: bucket.bucketName
+                ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
+            }
+        })
+        const findAllProduct = createLambda({
+            scope: this,
+            id: 'FindAllProduct',
+            entry: 'lambda/products/findAllProductHandler.ts',
+            environment: {
+               ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
             }
         })
 
-        // DAR PERMISSAO A API 
+        const updateProduct = createLambda({
+            scope: this,
+            id: 'UpdateProduct',
+            entry: 'lambda/products/updateProductHandler.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
+            }
+        })
+
+        const deleteProduct = createLambda({
+            scope: this,
+            id: 'DeleteProduct',
+            entry: 'lambda/products/deleteProductHandler.ts',
+            environment: {
+                  ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
+            }
+        })
+
+
+        // S3 
+        const uploadUrlProductsFn = createLambda({
+            scope: this,
+            id: 'UploadUrlProducts',
+            entry: 'lambda/products/uploadUrlHandler.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
+            }
+        })
+        // WORKER 
+        const worker = createLambda({
+            scope: this,
+            id: 'ProductWorker',
+            entry: 'lambda/workers/productsWorker.ts',
+            environment: {
+               ...commonEnv,
+                QUEUE_URL: productQueue.queueUrl
+            }
+        })
+        // PERMISSIONS
+        worker.addEventSource(new eventSources.SqsEventSource(productQueue))
+
+        productQueue.grantSendMessages(createProduct)
+        productQueue.grantSendMessages(updateProduct)
+        productQueue.grantSendMessages(deleteProduct)
+
+        productQueue.grantSendMessages(uploadUrlProductsFn)
+ // S3 PERMISSIONS
         bucket.grantPut(uploadUrlProductsFn)
-        // CRIAR ROTA PARA A API 
-        products.addResource('upload-url').addMethod('POST', new apigateway.LambdaIntegration(uploadUrlProductsFn))
+
+
+        // ROUTES
+        registerProductRoutes({
+            api,
+
+            createProduct,
+            findAllProduct,
+            updateProduct,
+            deleteProduct,
+            uploadUrlProductsFn
+        })
     }
 
 

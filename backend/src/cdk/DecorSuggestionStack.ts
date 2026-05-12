@@ -4,6 +4,8 @@
    import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
    import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
    import * as s3 from "aws-cdk-lib/aws-s3";
+import { createLambda } from './lambdas/createLambda';
+import { registerDecorSuggestionRoutes } from './routes/decorSuggestion';
    
 
       export class DecorSuggestionStack extends cdk.Stack{
@@ -29,78 +31,90 @@
                     maxReceiveCount:3
                 }
             })
-    // cria as apigateway 
-            const createSuggestion = new lambdaNode.NodejsFunction(this,'CreateSuggestion',{
-                entry:'lambda/DecorSuggestion/CreateSuggestionHandler.ts',
-                environment:{
-                    QUEUE_URL: decorSuggestionQueue.queueUrl
-                }
-            })
 
-            const findAllSuggestion = new lambdaNode.NodejsFunction(this,'FindAllSuggestion',{
-                entry:'lambda/DecorSuggestion/FindAllSuggestionHandler.ts',
-                environment:{
-                    QUEUE_URL: decorSuggestionQueue.queueUrl
-                }
-            })
-
-            const findByIdSuggestion = new lambdaNode.NodejsFunction(this,'FindByIdSuggestion',{
-                entry:'lambda/DecorSuggestion/FindByIdSuggestionHandler.ts',
-                environment:{
-                    QUEUE_URL: decorSuggestionQueue.queueUrl
-                }
-            })
-   
- 
-            // SQS Permissoes
-      
-            decorSuggestionQueue.grantSendMessages(createSuggestion)
-            decorSuggestionQueue.grantConsumeMessages(findAllSuggestion)
-            decorSuggestionQueue.grantConsumeMessages(findByIdSuggestion)
-
-    // API GATEWAY 
-            const decorSuggestion = api.root.addResource('decor-suggestion')
-
-            decorSuggestion.addMethod('POST',new apigateway.LambdaIntegration(createSuggestion))
-            decorSuggestion.addMethod('GET',new apigateway.LambdaIntegration(findAllSuggestion))
-         
-            const decorSuggestionId = decorSuggestion.addResource('{id}')
-            decorSuggestionId.addMethod('GET',new apigateway.LambdaIntegration(findByIdSuggestion))
-             // WORKER 
-   
-            const worker = new lambdaNode.NodejsFunction(this,'DecorSuggestionWorker',{
-                entry:'lambda/workers/decorSuggestionWorker.ts',
-                timeout: cdk.Duration.seconds(30)
-            })
-   
-           worker.addEventSource(new eventSources.SqsEventSource(decorSuggestionQueue))
-
-           // S3 
-             // CRIAR LAMBDA de bucket
+             // S3 
             const bucket = new s3.Bucket(this,'DecorSuggestionBucket',{
                 removalPolicy:cdk.RemovalPolicy.DESTROY,
                 autoDeleteObjects:true,
                 publicReadAccess:false
             })
    
+   // LAMBDA
+            const createDecorSuggestion  = createLambda({
+                scope: this,
+                id: 'CreateDecorSuggestion',
+                entry: 'lambda/decorSuggestion/create.ts',
+                environment: {
+                    DATABASE_URL: process.env.DATABASE_URL!,
+                    QUEUE_URL: decorSuggestionQueue.queueUrl
+                }
+            })
+
+            const findAllDecorSuggestion = createLambda({
+                scope: this,
+                id: 'FindAllDecorSuggestion',
+                entry: 'lambda/decorSuggestion/findAll.ts',
+                environment: {
+                    DATABASE_URL: process.env.DATABASE_URL!
+                }
+            })
+   
+            const findByIdDecorSuggestion = createLambda({
+                scope: this,
+                id: 'FindByIdDecorSuggestion',
+                entry: 'lambda/decorSuggestion/findById.ts',
+                environment: {
+                    DATABASE_URL: process.env.DATABASE_URL!
+                }
+            })
+   
+ 
+           
+             // WORKER 
+   
+            const worker = createLambda({
+                scope: this,
+                id: 'WorkerDecorSuggestion',
+                entry: 'lambda/decorSuggestion/worker.ts',
+                environment: {
+                    DATABASE_URL: process.env.DATABASE_URL!,
+                    QUEUE_URL: decorSuggestionQueue.queueUrl
+                }
+            })
+   
+           
+          
        
-           // CRIAR API GATEWAY DE S3 
-            const uploadUrlDecorSuggestion = new lambdaNode.NodejsFunction(this,'UploadUrlDecorSuggestion',{
-                entry:'lambda/DecorSuggestion/generateUrlDecorSuggestionHandler.ts',
-                environment:{
-                    AWS_REGION:process.env.AWS_REGION!,
+           //  S3 
+            const uploadUrlDecorSuggestion = createLambda({
+                scope: this,
+                id: 'UploadUrlDecorSuggestion',
+                entry: 'lambda/decorSuggestion/uploadUrl.ts',
+                environment: {
+                    DATABASE_URL: process.env.DATABASE_URL!,
                     BUCKET_NAME: bucket.bucketName
                 }
             })
          
    
-           // DAR PERMISSAO A API 
+           //PERMISSIONS
+      worker.addEventSource(new eventSources.SqsEventSource(decorSuggestionQueue))
+
+            decorSuggestionQueue.grantSendMessages(createDecorSuggestion)
+            decorSuggestionQueue.grantConsumeMessages(findAllDecorSuggestion)
+            decorSuggestionQueue.grantConsumeMessages(findByIdDecorSuggestion)
+            decorSuggestionQueue.grantConsumeMessages(uploadUrlDecorSuggestion)
+ // S3 PERMISSIONS
             bucket.grantPut(uploadUrlDecorSuggestion)
    
-           // CRIAR ROTA PARA A API 
-
-           const uploadUrlDecorSuggestionRoute = decorSuggestion.addResource('upload-url')
-           uploadUrlDecorSuggestionRoute.addMethod('POST',new apigateway.LambdaIntegration(uploadUrlDecorSuggestion))
+         registerDecorSuggestionRoutes({
+            api,
+            createDecorSuggestion,
+            findAllDecorSuggestion,
+            findByIdDecorSuggestion,
+            uploadUrlDecorSuggestion
+         })
+          
         }
 
        }

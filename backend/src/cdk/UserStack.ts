@@ -5,6 +5,11 @@ import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import { createLambda } from "./lambdas/createLambda";
+import { registerUserRoutes } from "./routes/userRoutes";
+import { commonEnv } from "./config/env";
+
+
 export class UserStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string) {
         super(scope, id);
@@ -26,73 +31,6 @@ export class UserStack extends cdk.Stack {
             }
         });
 
-        // Lambda
-
-        const getAllUser = new lambdaNode.NodejsFunction(this, 'GetAllUser', {
-            entry: 'lambda/users/getAllUserHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!,
-            }
-        })
-
-        const getByIdUser = new lambdaNode.NodejsFunction(this, 'GetByIdUser', {
-            entry: 'lambda/users/getByIdUserHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!,
-            }
-        })
-
-        const createUser = new lambdaNode.NodejsFunction(this, 'CreateUser', {
-            entry: 'lambda/users/createUserHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!,
-                QUEUE_URL: queue.queueUrl
-            }
-        })
-        
-        queue.grantSendMessages(createUser)
-
-        const updateUser = new lambdaNode.NodejsFunction(this, 'UpdateUser', {
-            entry: 'lambda/users/updateUserHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!,
-            }
-        })
-
-
-        const deleteUser = new lambdaNode.NodejsFunction(this, 'DeleteUser', {
-            entry: 'lambda/users/deleteUserHandler.ts',
-            environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!,
-            }
-        })
-
-        const users = api.root.addResource('users');
-
-        users.addMethod('POST', new apigateway.LambdaIntegration(createUser))
-        users.addMethod('GET', new apigateway.LambdaIntegration(getAllUser))
-        const userById = users.addResource("{id}")
-        userById.addMethod('PUT', new apigateway.LambdaIntegration(updateUser))
-        userById.addMethod('DELETE', new apigateway.LambdaIntegration(deleteUser))
-        userById.addMethod('GET', new apigateway.LambdaIntegration(getByIdUser))
-
-        // Worker
-
-        const worker = new lambdaNode.NodejsFunction(this, 'UserWorker', {
-            entry: 'lambda/workers/userWorker.ts',
-            timeout: cdk.Duration.seconds(10)
-
-        })
-
-        worker.addEventSource(new eventSources.SqsEventSource(queue))
-
-
-
         // S3 
 
         const bucket = new s3.Bucket(this, 'UserBucket', {
@@ -101,16 +39,104 @@ export class UserStack extends cdk.Stack {
             publicReadAccess: false
         })
 
-        const uploadUrlFn = new lambdaNode.NodejsFunction(this, 'GenerateUploadUrlFn', {
+        // Lambda
+
+
+
+        const getAllUser = createLambda({
+            scope: this,
+            id: 'GetAllUser',
+            entry: 'lambda/users/getAllUserHandler.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
+        const getByIdUser = createLambda({
+            scope: this,
+            id: 'GetByIdUser',
+            entry: 'lambda/users/getByIdUserHandler.ts',
+            environment: {
+                  ...commonEnv,
+                  QUEUE_URL: queue.queueUrl
+            }
+        })
+        const createUser = createLambda({
+            scope: this,
+            id: 'CreateUser',
+            entry: 'lambda/users/createUserHandler.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
+
+        const deleteUser = createLambda({
+            scope: this,
+            id: 'DeleteUser',
+            entry: 'lambda/users/deleteUserHandler.ts',
+            environment: {
+                 ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
+        const updateUser = createLambda({
+            scope: this,
+            id: 'UpdateUser',
+            entry: 'lambda/users/updateUserHandler.ts',
+            environment: {
+               ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
+        const uploadUrlUsersFn = createLambda({
+            scope: this,
+            id: 'UploadUrlUser',
             entry: 'lambda/users/generateUploadUrlHandler.ts',
             environment: {
                 BUCKET_NAME: bucket.bucketName,
-                AWS_REGION: process.env.AWS_REGION!
+                ...commonEnv,
             }
         })
-        bucket.grantPut(uploadUrlFn)
+        // WORKER
+        const worker = createLambda({
+            scope: this,
+            id: 'Worker',
+            entry: 'lambda/workers/userWorker.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
 
-        userById.addResource('upload-url').addMethod('POST', new apigateway.LambdaIntegration(uploadUrlFn))
+
+
+
+
+
+
+
+
+        //    PERMISSION  
+        worker.addEventSource(new eventSources.SqsEventSource(queue))
+
+        queue.grantSendMessages(createUser)
+        queue.grantSendMessages(updateUser)
+        queue.grantSendMessages(deleteUser)
+        queue.grantSendMessages(uploadUrlUsersFn)
+
+ // S3 PERMISSIONS
+        bucket.grantPut(uploadUrlUsersFn)
+
+        registerUserRoutes({
+            api,
+            createUser,
+            getAllUser,
+            getByIdUser,
+            updateUser,
+            deleteUser,
+            uploadUrlUsersFn
+        })
     }
 
 

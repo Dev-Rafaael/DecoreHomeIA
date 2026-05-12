@@ -4,6 +4,10 @@ import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
+import { worker } from "cluster";
+import { createLambda } from "./lambdas/createLambda";
+import { registerAuthRoutes } from "./routes/authRoutes";
+import { commonEnv } from "./config/env";
 
 export class AuthStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string) {
@@ -17,82 +21,92 @@ export class AuthStack extends cdk.Stack {
                 allowHeaders: ['*']
             }
         })
+        // cria dlq 
+        const dql = new sqs.Queue(this, 'AuthDlq')
+        // SQS  
+        const queue = new sqs.Queue(this, 'AuthQueue', {
+            deadLetterQueue: {
+                queue: dql,
+                maxReceiveCount: 3
+            }
+        })
+
+        // LAMBDA 
 
 
-        const getMe = new lambdaNode.NodejsFunction(this, 'me', {
+        const getMe = createLambda({
+            scope: this,
+            id: 'GetMe',
             entry: 'lambda/auth/getMeHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+             ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
         })
-        const login = new lambdaNode.NodejsFunction(this, 'login', {
+
+        const login = createLambda({
+            scope: this,
+            id: 'Login',
             entry: 'lambda/auth/loginHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
         })
 
-        const logout = new lambdaNode.NodejsFunction(this, 'logout', {
+        const logout = createLambda({
+            scope: this,
+            id: 'Logout',
             entry: 'lambda/auth/logoutHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
-
         })
 
-
-        const forgotPassword = new lambdaNode.NodejsFunction(this, 'forgotPassword', {
+        const forgotPassword = createLambda({
+            scope: this,
+            id: 'ForgotPassword',
             entry: 'lambda/auth/forgotPasswordHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+               ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
         })
 
-        const resetPassword = new lambdaNode.NodejsFunction(this, 'resetPassword', {
+        const resetPassword = createLambda({
+            scope: this,
+            id: 'ResetPassword',
             entry: 'lambda/auth/resetPasswordHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+               ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
         })
 
-        const refreshToken = new lambdaNode.NodejsFunction(this, 'refreshToken', {
+        const refreshToken = createLambda({
+            scope: this,
+            id: 'RefreshToken',
             entry: 'lambda/auth/refreshTokenHandler.ts',
             environment: {
-                DATABASE_URL: process.env.DATABASE_URL!,
-                JWT_SECRET: process.env.JWT_SECRET!
+               ...commonEnv,
+                QUEUE_URL: queue.queueUrl
+            }
+        })
+        // WORKER 
+
+        const worker = createLambda({
+            scope: this,
+            id: 'Worker',
+            entry: 'lambda/workers/authWorker.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: queue.queueUrl
             }
         })
 
 
-        const auth = api.root.addResource('auth');
-
-        auth.addResource('me').addMethod('GET', new apigateway.LambdaIntegration(getMe))
-        auth.addResource('login').addMethod('POST', new apigateway.LambdaIntegration(login))
-        auth.addResource('logout').addMethod('POST', new apigateway.LambdaIntegration(logout))
-        auth.addResource('forgot-password').addMethod('POST', new apigateway.LambdaIntegration(forgotPassword))
-        auth.addResource('reset-password').addMethod('POST', new apigateway.LambdaIntegration(resetPassword))
-        auth.addResource('refresh-token').addMethod('POST', new apigateway.LambdaIntegration(refreshToken))
-
-
-// Worker
-        const dql = new sqs.Queue(this,'AuthDlq')
-        const queue = new sqs.Queue(this,'AuthQueue',{
-          deadLetterQueue:{
-            queue:dql,
-            maxReceiveCount:3
-          }
-        })
-
-        const worker = new lambdaNode.NodejsFunction(this,'AuthWorker',{
-            entry:'lambda/workers/authWorker.ts',
-            timeout: cdk.Duration.seconds(10)
-        })
-
+        // PERMISSIONS 
         worker.addEventSource(new eventSources.SqsEventSource(queue))
 
         queue.grantSendMessages(login)
@@ -100,5 +114,15 @@ export class AuthStack extends cdk.Stack {
         queue.grantSendMessages(forgotPassword)
         queue.grantSendMessages(resetPassword)
         queue.grantSendMessages(refreshToken)
+
+        registerAuthRoutes({
+            api,
+            getMe,
+            login,
+            logout,
+            forgotPassword,
+            resetPassword,
+            refreshToken
+        })
     }
 }

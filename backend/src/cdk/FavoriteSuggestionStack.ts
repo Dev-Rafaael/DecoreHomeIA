@@ -4,6 +4,9 @@ import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as s3 from "aws-cdk-lib/aws-s3";
+import { createLambda } from './lambdas/createLambda';
+import { registerFavoriteSuggestionRoutes } from './routes/favoriteSuggestion';
+import { commonEnv } from './config/env';
 
 
 export class FavoriteSuggestionStack extends cdk.Stack {
@@ -22,7 +25,6 @@ export class FavoriteSuggestionStack extends cdk.Stack {
 
 
 
-
         // cria dlq 
         const dlq = new sqs.Queue(this, 'FavoriteSuggestionDlq')
         // cria queue 
@@ -32,75 +34,87 @@ export class FavoriteSuggestionStack extends cdk.Stack {
                 maxReceiveCount: 3
             }
         })
-        // cria as apigateway 
-        const createFavoriteSuggestion= new lambdaNode.NodejsFunction(this, 'CreateFavoriteSuggestion', {
-            entry: 'src/lambda/FavoriteSuggestion/CreateFavoriteSuggestionHandler.ts',
-            environment: {
-                QUEUE_URL: favoriteSuggestionQueue.queueUrl,
-                DATABASE_URL: process.env.DATABASE_URL!
-            }
-        });
-        const findAllFavoriteSuggestion = new lambdaNode.NodejsFunction(this, 'FindAllFavoriteSuggestion', {
-            entry: 'src/lambda/FavoriteSuggestion/FindAllFavoriteSuggestionHandler.ts',
-            environment: {
-                QUEUE_URL: favoriteSuggestionQueue.queueUrl,
-                DATABASE_URL: process.env.DATABASE_URL!
 
+        //// S3  
+        const bucket = new s3.Bucket(this, 'FavoriteSuggestionBucket', {
+            removalPolicy: cdk.RemovalPolicy.DESTROY,
+            autoDeleteObjects: true,
+            publicReadAccess: false
+        })
+
+        //   LAMBDA 
+
+
+        const createFavoriteSuggestion = createLambda({
+            scope: this,
+            id: 'CreateFavoriteSuggestion',
+            entry: 'src/lambda/FavoriteSuggestion/createFavoriteSuggestion.ts',
+            environment: {
+                ...commonEnv,
+                QUEUE_URL: favoriteSuggestionQueue.queueUrl
             }
         })
 
-        const deleteFavoriteSuggestion = new lambdaNode.NodejsFunction(this, 'DeleteFavoriteSuggestion', {
-            entry: 'src/lambda/FavoriteSuggestion/DeleteFavoriteSuggestionHandler.ts',
+        const findAllFavoriteSuggestion = createLambda({
+            scope: this,
+            id: 'FindAllFavoriteSuggestion',
+            entry: 'src/lambda/FavoriteSuggestion/findAllFavoriteSuggestion.ts',
             environment: {
-                QUEUE_URL: favoriteSuggestionQueue.queueUrl,
-                DATABASE_URL: process.env.DATABASE_URL!
+              ...commonEnv,
+                QUEUE_URL: favoriteSuggestionQueue.queueUrl
             }
         })
 
-        // SQS Permissoes
+        const deleteFavoriteSuggestion = createLambda({
+            scope: this,
+            id: 'DeleteFavoriteSuggestion',
+            entry: 'src/lambda/FavoriteSuggestion/deleteFavoriteSuggestion.ts',
+            environment: {
+                 ...commonEnv,
+                QUEUE_URL: favoriteSuggestionQueue.queueUrl
+            }
+        })
+
+        const uploadUrlFavoriteSuggestion = createLambda({
+            scope: this,
+            id: 'UploadUrlFavoriteSuggestion',
+            entry: 'src/lambda/FavoriteSuggestion/uploadUrlFavoriteSuggestion.ts',
+            environment: {
+               ...commonEnv,
+                QUEUE_URL: favoriteSuggestionQueue.queueUrl
+            }
+        })
+        // WORKER 
+
+        const worker = createLambda({
+            scope: this,
+            id: 'FavoriteSuggestionWorker',
+            entry: 'src/lambda/workers/favoriteSuggestionWorker.ts',
+            environment: {
+                 ...commonEnv,
+                QUEUE_URL: favoriteSuggestionQueue.queueUrl
+            }
+        })
+
+
+        //  PERMISSIONS
+        worker.addEventSource(new eventSources.SqsEventSource(favoriteSuggestionQueue))
+
+
         favoriteSuggestionQueue.grantSendMessages(createFavoriteSuggestion)
         favoriteSuggestionQueue.grantSendMessages(findAllFavoriteSuggestion)
         favoriteSuggestionQueue.grantSendMessages(deleteFavoriteSuggestion)
-
-        // API GATEWAY 
-        const favoriteSuggestion = api.root.addResource('favorite-suggestion')
-
-        favoriteSuggestion.addMethod('POST',new apigateway.LambdaIntegration(createFavoriteSuggestion))
-        favoriteSuggestion.addMethod('GET',new apigateway.LambdaIntegration(findAllFavoriteSuggestion))
-
-        const favoriteSuggestionID = favoriteSuggestion.addResource('{id}')
-        favoriteSuggestionID.addMethod('DELETE',new apigateway.LambdaIntegration(deleteFavoriteSuggestion))
-        // WORKER 
-
-        const worker = new lambdaNode.NodejsFunction(this, 'FavoriteSuggestionWorker', {
-            entry: 'src/lambda/FavoriteSuggestion/FavoriteSuggestionWorker.ts',
-          timeout:cdk.Duration.seconds(30)
-        })
-        worker.addEventSource(new eventSources.SqsEventSource(favoriteSuggestionQueue))
-        
-
-        //// S3  CRIAR LAMBDA de bucket
-        const bucket = new s3.Bucket(this,'FavoriteSuggestionBucket',{
-            removalPolicy:cdk.RemovalPolicy.DESTROY,
-            autoDeleteObjects:true,
-            publicReadAccess:false
-        })
-
-        // CRIAR API GATEWAY DE S3 
-        const uploadUrlFavoriteSuggestion = new lambdaNode.NodejsFunction(this,'UploadUrlFavoriteSuggestion',{
-            entry:'src/lambda/FavoriteSuggestion/UploadUrlFavoriteSuggestionHandler.ts',
-            environment:{
-                BUCKET_NAME: bucket.bucketName,
-                AWS_REGION: process.env.AWS_REGION!
-            }
-        })
-
-        // DAR PERMISSAO A API 
+        favoriteSuggestionQueue.grantSendMessages(uploadUrlFavoriteSuggestion)
+        // S3 PERMISSIONS
         bucket.grantPut(uploadUrlFavoriteSuggestion)
 
-        // CRIAR ROTA PARA A API 
-        const uploadUrlFavoriteSuggestionResource = favoriteSuggestion.addResource('upload-url')
-        uploadUrlFavoriteSuggestionResource.addMethod('POST',new apigateway.LambdaIntegration(uploadUrlFavoriteSuggestion))
+        registerFavoriteSuggestionRoutes({
+            api,
+            createFavoriteSuggestion,
+            findAllFavoriteSuggestion,
+            deleteFavoriteSuggestion,
+            uploadUrlFavoriteSuggestion
+        })
     }
 
 }
