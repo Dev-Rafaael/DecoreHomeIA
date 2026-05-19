@@ -4,10 +4,9 @@ import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
-import { worker } from "cluster";
-import { createLambda } from "./lambdas/createLambda";
-import { registerAuthRoutes } from "./routes/authRoutes";
-import { commonEnv } from "./config/env";
+import { createLambda } from '../lambdas/createLambda';
+import { registerAuthRoutes } from '../routes/authRoutes';
+import { commonEnv } from '../config/env';
 
 export class AuthStack extends cdk.Stack {
     constructor(scope: cdk.App, id: string) {

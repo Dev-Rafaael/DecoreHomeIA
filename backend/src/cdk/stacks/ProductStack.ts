@@ -6,9 +6,9 @@ import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as s3 from "aws-cdk-lib/aws-s3";
-import { createLambda } from './lambdas/createLambda';
-import { registerProductRoutes } from './routes/productRoutes';
-import { commonEnv } from './config/env';
+import { createLambda } from '../lambdas/createLambda';
+import { registerProductRoutes } from '../routes/productRoutes';
+import { commonEnv } from '../config/env';
 
 export class ProductStack extends cdk.Stack {
     // cria constructor de scope e id usando super 
