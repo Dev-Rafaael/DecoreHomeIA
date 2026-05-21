@@ -1,7 +1,7 @@
-import { CreateProductUseCase } from "../../../modules/Products/application/CreateProductUseCase";
-import { CreateProductController } from "../../../modules/Products/http/CreateProductController";
-import { PrismaProductsRepository } from "../../../modules/Products/infra/repositories/PrismaProductsRepository";
-import { SQSProductsService } from "../../../modules/Products/infra/services/SQSProductsService";
+import { CreateProductUseCase } from "../../../modules/Product/application/CreateProductUseCase";
+import { CreateProductController } from "../../../modules/Product/http/CreateProductController";
+import { PrismaProductsRepository } from "../../../modules/Product/infra/repositories/PrismaProductsRepository";
+import { SQSProductsService } from "../../../modules/Product/infra/services/SQSProductsService";
 
 
 export function makeCreateProductController(){

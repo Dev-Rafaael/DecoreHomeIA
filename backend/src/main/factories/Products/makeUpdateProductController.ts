@@ -1,7 +1,7 @@
-import { PrismaProductsRepository } from "../../../modules/Products/infra/repositories/PrismaProductsRepository"
-import { SQSProductsService } from "../../../modules/Products/infra/services/SQSProductsService"
-import { UpdateProductUseCase } from "../../../modules/Products/application/UpdateProductUseCase"
-import { UpdateProductController } from "../../../modules/Products/http/UpdateProductController"
+import { PrismaProductsRepository } from "../../../modules/Product/infra/repositories/PrismaProductsRepository"
+import { SQSProductsService } from "../../../modules/Product/infra/services/SQSProductsService"
+import { UpdateProductUseCase } from "../../../modules/Product/application/UpdateProductUseCase"
+import { UpdateProductController } from "../../../modules/Product/http/UpdateProductController"
 
 
 

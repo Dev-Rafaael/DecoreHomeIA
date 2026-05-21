@@ -1,10 +1,10 @@
 
 
 
-import { DeleteProductController } from "../../../modules/Products/http/DeleteProductController";
-import { DeleteProductUseCase } from "../../../modules/Products/application/DeleteProductUseCase";
-import { PrismaProductsRepository } from "../../../modules/Products/infra/repositories/PrismaProductsRepository";
-import { SQSProductsService } from "../../../modules/Products/infra/services/SQSProductsService";
+import { DeleteProductController } from "../../../modules/Product/http/DeleteProductController";
+import { DeleteProductUseCase } from "../../../modules/Product/application/DeleteProductUseCase";
+import { PrismaProductsRepository } from "../../../modules/Product/infra/repositories/PrismaProductsRepository";
+import { SQSProductsService } from "../../../modules/Product/infra/services/SQSProductsService";
 
 export function makeDeleteProductController() {
     const productRepository = new PrismaProductsRepository()

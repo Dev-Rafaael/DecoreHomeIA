@@ -1,5 +1,5 @@
-import { GenerateUploadUrlProductsUseCase } from "../../../modules/Products/application/GenerateUrlProductsUseCase";
-import { GenerateUploadUrlProductsController } from "../../../modules/Products/http/GenerateUrlProductsController";
+import { GenerateUploadUrlProductsUseCase } from "../../../modules/Product/application/GenerateUrlProductsUseCase";
+import { GenerateUploadUrlProductsController } from "../../../modules/Product/http/GenerateUrlProductsController";
 import { S3Service } from "../../../modules/User/infra/services/S3Service";
 
 
