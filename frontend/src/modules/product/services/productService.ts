@@ -1,5 +1,5 @@
 
-import { api } from "@/src/lib/axios"
+import { api } from "@/src/lib/axios/axios"
 import { CreateProductDTO, UpdateProductDTO } from "../schemas/productSchema"
 
 

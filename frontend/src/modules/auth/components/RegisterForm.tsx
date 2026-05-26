@@ -1,39 +1,81 @@
-"use cliient"
- 
-import { useState } from "react";
-import { CreateUserDTO } from "../types/auth";
- 
-interface Props{
-    onSubmit:(data:CreateUserDTO)=>void
-}
-export function RegisterForm({onSubmit}:Props) {
-    const [name,setName]= useState("")
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
-    const [confirmPassword,setConfirmPassword]=useState("")
-     const [birthDate,setBirthDate]=useState("")
-    const [phone,setPhone]=useState("")
-    const [gender,setGender]=useState("")
-    const handleSubmit = (e:React.FormEvent)=>{
-        e.preventDefault()
- 
-        onSubmit({name,email,password,gender,birthDate,phone})
+"use client";
+
+import {useForm} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerSchema, RegisterDTO } from "../schemas/register-schema";
+import { useRegister } from "../hooks/use-register";
+
+export function RegisterForm() {
+    const registerMutation =
+        useRegister();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<RegisterDTO>({
+        resolver:zodResolver(registerSchema)
+    });
+
+    async function onSubmit(data: RegisterDTO) {
+        await registerMutation.mutateAsync(data);
     }
+
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Name" onChange={(e)=> setName(e.target.value)} />
-                <input type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
-                <input type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
-                <input type="password" placeholder="Confirm the Password" onChange={(e)=>setConfirmPassword(e.target.value)} />
-                <input type="text" placeholder="Gender" onChange={(e)=>setGender(e.target.value)}/>
-                <input type="date" placeholder="BirthDate" onChange={(e)=>setBirthDate(e.target.value)}/>
- 
-                <input type="text" placeholder="Phone" onChange={(e)=>setPhone(e.target.value)}/>
- 
-                <button type="submit">Register</button>
-            </form>
-        </div>
+        <form
+            onSubmit={handleSubmit(onSubmit )}
+        >
+            <input
+                placeholder="Name"
+                {...register("name")}
+            />
+
+            {errors.name && (
+                <span>
+                    {errors.name.message}
+                </span>
+            )}
+
+            <input placeholder="Email"{...register("email")}/>
+
+            <input
+                type="password"
+                placeholder="Password"
+                {...register(
+                    "password")} />
+
+            <input
+                type="password"
+                placeholder="Confirm Password"
+                {...register(
+                    "confirmPassword"
+                )}
+            />
+
+            <input
+                placeholder="Gender"
+                {...register(
+                    "gender"
+                )}
+            />
+
+            <input
+                type="date"
+                {...register(
+                    "birthDate"
+                )}
+            />
+
+            <input
+                placeholder="Phone"
+                {...register(
+                    "phone"
+                )}
+            />
+
+            <button type="submit">
+                Register
+            </button>
+        </form>
     );
 }

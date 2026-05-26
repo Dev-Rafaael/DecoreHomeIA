@@ -1,4 +1,4 @@
-import { api } from "@/src/lib/axios";
+import { api } from "@/src/lib/axios/axios";
 import { updateUserDTO } from "../schemas/userSchema";
 
 export const userService = {

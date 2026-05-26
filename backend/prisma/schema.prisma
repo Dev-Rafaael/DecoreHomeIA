@@ -31,7 +31,7 @@ model User {
 model UserToken {
   id           String   @id @default(uuid())
   userId       String
-  refreshToken String
+  refreshTokenHash String
   expiresAt    DateTime
   createdAt    DateTime @default(now())
 
