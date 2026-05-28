@@ -1,11 +1,19 @@
+'use client'
 import Image from "next/image"
+import { AISuggestionModalForm } from "../../decoration/components/DecorationForm"
+import { useDecorationModal } from "../../decoration/store/decoration.store"
+import { DecorationModal } from "../../decoration/components/DecorationModal"
+
 
 export function AboutSection() {
+  const {isOpen,openModal,closeModal} = useDecorationModal()
   return (
     <section
       id="sobre"
       className="w-full bg-amber-100"
     >
+
+      <button onClick={() => openModal()} className="bg-blue-500 text-white px-4 py-2 rounded">Gerar Sugestão</button>
       <h1
         className="
           flex
@@ -113,6 +121,15 @@ export function AboutSection() {
           </figcaption>
         </figure>
       </div>
+
+      {isOpen === true && (
+        <DecorationModal
+  open={isOpen}
+  onClose={closeModal}
+>
+  <AISuggestionModalForm />
+</DecorationModal>
+      )}
     </section>
   )
 }

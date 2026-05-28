@@ -13,7 +13,7 @@ from "react-toastify";
 import { register }
 from "../api/register";
 
-export function useRegister() {
+export function useRegisterMutation() {
   const router =
     useRouter();
 

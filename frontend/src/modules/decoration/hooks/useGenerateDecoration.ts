@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { decorAIService }
-from "../services/decor-ai.service";
+from "../services/decoration-ai.service";
 
 export function useGenerateDecor() {
   return useMutation({

@@ -1,4 +1,4 @@
-export function AILoading() {
+export function DecorationLoading() {
   return (
     <div>
       <p>

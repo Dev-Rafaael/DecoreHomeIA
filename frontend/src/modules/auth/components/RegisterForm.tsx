@@ -1,81 +1,160 @@
-"use client";
+'use client'
 
-import {useForm} from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema, RegisterDTO } from "../schemas/register-schema";
-import { useRegister } from "../hooks/use-register";
+import { useForm }
+from "react-hook-form"
+
+import { zodResolver }
+from "@hookform/resolvers/zod"
+
+import {
+  registerSchema,
+  RegisterDTO
+} from "../schemas/register-schema"
+import { useRegisterMutation } from "../hooks/use-register-mutation"
+
+
 
 export function RegisterForm() {
-    const registerMutation =
-        useRegister();
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<RegisterDTO>({
-        resolver:zodResolver(registerSchema)
-    });
+  const {
+    mutateAsync,
+    isPending
+  } = useRegisterMutation()
 
-    async function onSubmit(data: RegisterDTO) {
-        await registerMutation.mutateAsync(data);
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors
     }
+  } = useForm<RegisterDTO>({
+    resolver:
+      zodResolver(registerSchema)
+  })
 
-    return (
-        <form
-            onSubmit={handleSubmit(onSubmit )}
+  async function onSubmit(
+    data: RegisterDTO
+  ) {
+
+    try {
+
+      await mutateAsync(data)
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return (
+
+    <div
+      className="
+        w-full
+        max-w-md
+        rounded-3xl
+        border
+        bg-white
+        p-8
+        shadow-xl
+      "
+    >
+
+      <div className="mb-8">
+
+        <h1
+          className="
+            text-3xl
+            font-semibold
+          "
         >
-            <input
-                placeholder="Name"
-                {...register("name")}
-            />
+          Crie sua conta
+        </h1>
 
-            {errors.name && (
-                <span>
-                    {errors.name.message}
-                </span>
-            )}
+        <p
+          className="
+            mt-2
+            text-zinc-500
+          "
+        >
+          Comece a transformar
+          ambientes com IA.
+        </p>
 
-            <input placeholder="Email"{...register("email")}/>
+      </div>
 
-            <input
-                type="password"
-                placeholder="Password"
-                {...register(
-                    "password")} />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-5"
+      >
 
-            <input
-                type="password"
-                placeholder="Confirm Password"
-                {...register(
-                    "confirmPassword"
-                )}
-            />
+        <input
+          placeholder="Seu nome"
+          {...register("name")}
+          className="
+            w-full
+            rounded-2xl
+            border
+            px-4
+            py-3
+          "
+        />
 
-            <input
-                placeholder="Gender"
-                {...register(
-                    "gender"
-                )}
-            />
+        <input
+          placeholder="Seu email"
+          {...register("email")}
+          className="
+            w-full
+            rounded-2xl
+            border
+            px-4
+            py-3
+          "
+        />
 
-            <input
-                type="date"
-                {...register(
-                    "birthDate"
-                )}
-            />
+        <input
+          type="password"
+          placeholder="Sua senha"
+          {...register("password")}
+          className="
+            w-full
+            rounded-2xl
+            border
+            px-4
+            py-3
+          "
+        />
 
-            <input
-                placeholder="Phone"
-                {...register(
-                    "phone"
-                )}
-            />
+        <input
+          type="password"
+          placeholder="Confirmar senha"
+          {...register("confirmPassword")}
+          className="
+            w-full
+            rounded-2xl
+            border
+            px-4
+            py-3
+          "
+        />
 
-            <button type="submit">
-                Register
-            </button>
-        </form>
-    );
+        <button
+          type="submit"
+          disabled={isPending}
+          className="
+            w-full
+            rounded-2xl
+            bg-black
+            py-3
+            text-white
+          "
+        >
+          {isPending
+            ? "Criando..."
+            : "Criar conta"}
+        </button>
+
+      </form>
+
+    </div>
+  )
 }

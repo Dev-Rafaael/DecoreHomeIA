@@ -4,15 +4,12 @@
 import { z } from "zod";
 
 export const decorSuggestionSchema = z.object({
-    prompt: z.string(),
-    response: z.string(),
     ambiente: z.string(),
     estilo: z.string(),
-    cores: z.string(),
+    cores: z.string().min(1, "Digite ao menos uma cor"),
     orcamento: z.string(),
-    modelUsed: z.string(),
+    descricaoLivre:z.string().optional()
 });
-
 
 export type CreateDecorSuggestionDTO = z.infer<typeof decorSuggestionSchema>;
 const updateDecorSuggestionSchema = decorSuggestionSchema.partial();
