@@ -1,13 +1,15 @@
+"use client"
 
 import { useState } from "react"
 import { FavoriteSuggestion } from "../types/favoriteSuggestion"
-import router from "next/router"
+import { useRouter } from "next/navigation"
 interface Props {
     favoriteSuggestion: FavoriteSuggestion
 }
 
 export function FavoriteSuggestionCard({ favoriteSuggestion }: Props) {
     const [onDelete, setOnDelete] = useState(false)
+    const router = useRouter()
     return (
         <div>
             <button onClick={() => router.push("/favoriteSuggestion/create")}>Create</button>

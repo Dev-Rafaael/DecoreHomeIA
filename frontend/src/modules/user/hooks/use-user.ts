@@ -1,5 +1,7 @@
+ "use client";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { userService } from "../services/userService";
 import { updateUserDTO } from "../schemas/userSchema";
 import { toast } from "react-toastify";

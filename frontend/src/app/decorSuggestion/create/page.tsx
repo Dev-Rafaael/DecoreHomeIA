@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useCreateDecorSuggestion } from "../../../modules/DecorSuggestion/hooks/useDecorSuggestion";
 import { CreateDecorSuggestionDTO } from "../../../modules/DecorSuggestion/schemas/decorSuggestionSchema";
 import { DecorSuggestionForm } from "../../../modules/DecorSuggestion/components/DecorSuggestionForm";

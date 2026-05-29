@@ -1,10 +1,11 @@
 
+"use client";
 
 import { ProductForm } from "@/src/modules/product/components/ProductForm";
-import { useProduct, useProducts, useUpdateProduct } from "@/src/modules/product/hooks/useProduct";
+import { useProduct, useUpdateProduct } from "@/src/modules/product/hooks/useProduct";
 import { UpdateProductDTO } from "@/src/modules/product/schemas/productSchema";
 import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export function  EditProduct() {
     const {mutate:update}= useUpdateProduct()

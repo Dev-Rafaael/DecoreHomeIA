@@ -1,3 +1,4 @@
+import { DecorationForm } from "../../decoration/components/DecorationForm"
 import { EventForm } from "../components/event-form"
 
 export function HeroSection() {
@@ -60,7 +61,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <EventForm />
+       <DecorationForm/>
       </div>
     </section>
   )

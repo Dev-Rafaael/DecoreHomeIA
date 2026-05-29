@@ -1,4 +1,6 @@
-import { useRouter } from "next/router"
+"use client"
+
+import { useRouter } from "next/navigation"
 import { useProducts } from "../hooks/useProduct"
 import { useState } from "react"
 

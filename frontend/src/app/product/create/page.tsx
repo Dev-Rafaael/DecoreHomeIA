@@ -1,7 +1,9 @@
+"use client";
+
 import { ProductForm } from "@/src/modules/product/components/ProductForm";
 import { useCreateProduct } from "@/src/modules/product/hooks/useProduct";
 import { CreateProductDTO } from "@/src/modules/product/schemas/productSchema";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 
 export default function CreateProductPage() {

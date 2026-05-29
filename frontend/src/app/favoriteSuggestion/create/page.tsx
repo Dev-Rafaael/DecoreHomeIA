@@ -1,7 +1,9 @@
-import { FavoriteForm } from "@/src/modules/FavoriteSuggestion/components/FavoriteSuggestionForm"
+"use client";
+
+import { FavoriteSuggestionForm } from "@/src/modules/FavoriteSuggestion/components/FavoriteSuggestionForm"
 import { useCreateFavorite } from "@/src/modules/FavoriteSuggestion/hooks/useFavoriteSuggestion"
 import { createFavoriteDTO } from "@/src/modules/FavoriteSuggestion/schemas/favoriteSchema"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 
 
 
@@ -20,7 +22,7 @@ export function CreateFavoriteSuggestionPage(){
     return(
         <div>
             <h1>Create Favorite Suggestion</h1>
-            <FavoriteForm onSubmit={handleSubmit}/>
+            <FavoriteSuggestionForm onSubmit={handleSubmit}/>
         </div>
     )
 }

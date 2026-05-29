@@ -1,7 +1,9 @@
+"use client";
+
 import { PreferenceForm } from "@/src/modules/DecorPreference/components/PreferenceForm";
 import { useCreatePreference } from "@/src/modules/DecorPreference/hooks/usePreference";
 import { CreatePreferenceDTO } from "@/src/modules/DecorPreference/schemas/preferenceSchema";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 
 
