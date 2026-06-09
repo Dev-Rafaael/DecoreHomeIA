@@ -1,0 +1,156 @@
+{
+  "version": "53.0.0",
+  "files": {
+    "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6": {
+      "displayName": "UserStack/Custom::S3AutoDeleteObjectsCustomResourceProvider Code",
+      "source": {
+        "path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-d7fff1e7": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "242253c69a2e6a56efb42521487060c49b156ba65e768c332c17e55c6b10d526": {
+      "displayName": "GetAllUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-181afe6a": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "242253c69a2e6a56efb42521487060c49b156ba65e768c332c17e55c6b10d526.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d": {
+      "displayName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+      "source": {
+        "path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-b4f9d1d9": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "a30570dbae661c5075ac96d6e557c910c056989ae76e11d03d88c3a57bb9947b": {
+      "displayName": "GetByIdUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-ae822f15": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "a30570dbae661c5075ac96d6e557c910c056989ae76e11d03d88c3a57bb9947b.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "5d2bf9c1486a89904f57138bb83446929459e1c7d4627ba02c20bf3c4aa8eb12": {
+      "displayName": "CreateUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-66f7c326": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "5d2bf9c1486a89904f57138bb83446929459e1c7d4627ba02c20bf3c4aa8eb12.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "a5cbb552e20958cb27049b0eb887c9570915aca8cd2ccfef67eb52dd7babe4bd": {
+      "displayName": "DeleteUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-24f79229": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "a5cbb552e20958cb27049b0eb887c9570915aca8cd2ccfef67eb52dd7babe4bd.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "bf18d24a16bce7cf34ca94ef9a7ac58c62e35f5344de3aeaa329bed5b50694d3": {
+      "displayName": "UpdateUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-1f04b3f9": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "bf18d24a16bce7cf34ca94ef9a7ac58c62e35f5344de3aeaa329bed5b50694d3.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "40c188dad2ae897f23ef105d1a617e267329c6e3d1dd57b443ada023512fce06": {
+      "displayName": "UploadUrlUser/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-532aeea5": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "40c188dad2ae897f23ef105d1a617e267329c6e3d1dd57b443ada023512fce06.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "c85e9e88c55265db293d1d3552e24aa16c9011a7f4cb5239f0afe4e54c303790": {
+      "displayName": "Worker/Code",
+      "source": {
+        "path": "C:\\DecoreHome-AI\\backend",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-eeef5b8c": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "c85e9e88c55265db293d1d3552e24aa16c9011a7f4cb5239f0afe4e54c303790.zip",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    },
+    "980de3ed5956575809e94f0c7ab14d9a9a3d3e4d987b5bf8266432eb63b0f892": {
+      "displayName": "UserStack Template",
+      "source": {
+        "path": "UserStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "839513672629-sa-east-1-eeff578c": {
+          "bucketName": "cdk-hnb659fds-assets-839513672629-sa-east-1",
+          "objectKey": "980de3ed5956575809e94f0c7ab14d9a9a3d3e4d987b5bf8266432eb63b0f892.json",
+          "region": "sa-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::839513672629:role/cdk-hnb659fds-file-publishing-role-839513672629-sa-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

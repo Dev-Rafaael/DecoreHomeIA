@@ -1,0 +1,1136 @@
+{
+  "/UserStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/UserStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals, @cspotcode\\source-map-support...",
+        "(no user code in 9007199254740991 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/UserStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals, @cspotcode\\source-map-support...",
+        "(no user code in 9007199254740991 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/UserStack/Api/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiF70053CD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Account": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiAccountA18C9B29"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Endpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiEndpoint4F160690"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UserDlq/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserDlq5F30E0BB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:31:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UserQueue/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserQueue315821F7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Queue2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:32:23)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UserBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserBucket9D85EFED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:41:24)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/UserStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:41:24)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:41:24)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetAllUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetAllUser24FC9E28"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetByIdUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetByIdUser0C2C6CE5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:60:41)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/CreateUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CreateUser1C98808B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:69:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/DeleteUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeleteUser55A9FE77"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:79:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UpdateUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateUserCDA15069"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:88:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UploadUrlUser/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadUrlUser0A23A770"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:97:46)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Worker/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Worker11F36D0F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:107:36)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals, @cspotcode\\source-map-support...",
+        "(no user code in 9007199254740991 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/UserStack/Api/CloudWatchRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiCloudWatchRole73EC6FC4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Deployment/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiDeploymentB17BE62Dadd86bed24170c7a9f9b5beabd65bfd7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/DeploymentStage.prod/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiDeploymentStageprod3EB9684E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UserBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserBucketPolicy698BF045"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:41:24)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/UserStack/UserBucket/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserBucketAutoDeleteObjectsCustomResource2CDD7A12"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:41:24)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetAllUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetAllUserServiceRoleE87F935C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetAllUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetAllUserLogRetention08CF7461"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetByIdUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetByIdUserServiceRole84B92518"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:60:41)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/GetByIdUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "GetByIdUserLogRetentionAACDC024"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:60:41)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/CreateUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CreateUserServiceRole583944EB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:69:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/CreateUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CreateUserLogRetention72506AE0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:69:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/DeleteUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeleteUserServiceRoleF9B1C57A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:79:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/DeleteUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeleteUserLogRetention7B7EEAD9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:79:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UpdateUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateUserServiceRole391C6F1E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:88:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UpdateUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateUserLogRetentionADB04A20"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:88:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UploadUrlUser/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadUrlUserServiceRoleFCE5B841"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:97:46)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UploadUrlUser/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadUrlUserLogRetention2A5F596D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:97:46)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Worker/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerServiceRole8543584E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:107:36)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Worker/LogRetention/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerLogRetention45F80F1E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:107:36)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Worker/SqsEventSource:UserStackUserQueueE16C804A/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerSqsEventSourceUserStackUserQueueE16C804A4452D238"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...NodejsFunction.addEventSource in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:126:16)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiOPTIONS5886EA5D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:22:21)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Apiusers7F86375B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:27:28)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new NodejsFunction in aws-cdk-lib...",
+        "createLambda (C:\\DecoreHome-AI\\backend\\src\\cdk\\lambdas\\createLambda.ts:21:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:51:40)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/CreateUser/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CreateUserServiceRoleDefaultPolicy44CE0BDC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.grantSendMessages in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:128:15)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/DeleteUser/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "DeleteUserServiceRoleDefaultPolicyA88C2C85"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.grantSendMessages in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:130:15)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UpdateUser/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UpdateUserServiceRoleDefaultPolicyE582CE67"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.grantSendMessages in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:129:15)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/UploadUrlUser/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UploadUrlUserServiceRoleDefaultPolicyE809EC6E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.grantSendMessages in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:131:15)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Worker/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "WorkerServiceRoleDefaultPolicyAE71B5FA"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...NodejsFunction.addEventSource in aws-cdk-lib...",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:126:16)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersOPTIONS3D818C2B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:27:28)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/POST/ApiPermission.UserStackApi1CA013C1.POST..users": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersPOSTApiPermissionUserStackApi1CA013C1POSTusersF400F240"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:29:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/POST/ApiPermission.Test.UserStackApi1CA013C1.POST..users": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersPOSTApiPermissionTestUserStackApi1CA013C1POSTusers79D572DB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:29:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersPOST8BD5BC5B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:29:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/GET/ApiPermission.UserStackApi1CA013C1.GET..users": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersGETApiPermissionUserStackApi1CA013C1GETusersFB84B23B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:30:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/GET/ApiPermission.Test.UserStackApi1CA013C1.GET..users": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersGETApiPermissionTestUserStackApi1CA013C1GETusers011E867B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:30:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersGET3A1F1D37"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:30:11)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "Apiusersid5081FFC1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:32:24)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/upload-url/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersuploadurlA3058467"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:37:29)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidOPTIONS2BEB6077"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:32:24)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/GET/ApiPermission.UserStackApi1CA013C1.GET..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidGETApiPermissionUserStackApi1CA013C1GETusersid62125CF9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:33:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/GET/ApiPermission.Test.UserStackApi1CA013C1.GET..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidGETApiPermissionTestUserStackApi1CA013C1GETusersid602E4F8E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:33:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidGETB1D117E7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:33:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/PUT/ApiPermission.UserStackApi1CA013C1.PUT..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidPUTApiPermissionUserStackApi1CA013C1PUTusersid44213BE5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:34:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/PUT/ApiPermission.Test.UserStackApi1CA013C1.PUT..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidPUTApiPermissionTestUserStackApi1CA013C1PUTusersidD0F8E622"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:34:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidPUT5EAE40E9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:34:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/DELETE/ApiPermission.UserStackApi1CA013C1.DELETE..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidDELETEApiPermissionUserStackApi1CA013C1DELETEusersid6F01AB48"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:35:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/DELETE/ApiPermission.Test.UserStackApi1CA013C1.DELETE..users.{id}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidDELETEApiPermissionTestUserStackApi1CA013C1DELETEusersidA4698F88"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:35:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/{id}/DELETE/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersidDELETEE8AA856F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:35:10)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/upload-url/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersuploadurlOPTIONS2845394F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:37:29)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/upload-url/POST/ApiPermission.UserStackApi1CA013C1.POST..users.upload-url": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersuploadurlPOSTApiPermissionUserStackApi1CA013C1POSTusersuploadurlA31965A5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:38:15)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/upload-url/POST/ApiPermission.Test.UserStackApi1CA013C1.POST..users.upload-url": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersuploadurlPOSTApiPermissionTestUserStackApi1CA013C1POSTusersuploadurlFD5B613C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:38:15)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/UserStack/Api/Default/users/upload-url/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiusersuploadurlPOSTA5876F65"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "registerUserRoutes (C:\\DecoreHome-AI\\backend\\src\\cdk\\routes\\userRoutes.ts:38:15)",
+        "new UserStack (C:\\DecoreHome-AI\\backend\\src\\cdk\\stacks\\UserStack.ts:136:27)",
+        "<anonymous> (C:\\DecoreHome-AI\\backend\\bin\\cdk.ts:10:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ]
+}

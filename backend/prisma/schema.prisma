@@ -26,6 +26,8 @@ model User {
   preferences DecorPreference?
   suggestions DecorSuggestion[]
   tokens      UserToken[]
+
+  favoriteSuggestions FavoriteSuggestion[]
 }
 
 model UserToken {
@@ -63,17 +65,21 @@ model DecorPreference {
 
 model DecorSuggestion {
   id              String   @id @default(uuid())
-  userId          String @index
+  userId          String
   prompt          String
   response        Json
   ambiente        Ambiente?
   estilo          Estilo?
   cores           String[]
   orcamento       Orcamento?
-  modelUsed String?
+  modelUsed       String?
   createdAt       DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  favorites FavoriteSuggestion[]
+
+  @@index([userId])
 }
 
 model FavoriteSuggestion {
