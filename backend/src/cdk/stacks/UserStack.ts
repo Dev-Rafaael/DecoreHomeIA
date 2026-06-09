@@ -11,8 +11,13 @@ import { commonEnv } from '../config/env';
 
 
 export class UserStack extends cdk.Stack {
-    constructor(scope: cdk.App, id: string) {
-        super(scope, id);
+    constructor(
+    scope: cdk.App,
+    id: string,
+    props?: cdk.StackProps
+  ) {
+
+    super(scope, id, props);
 
         const api = new apigateway.RestApi(this, 'Api', {
             defaultCorsPreflightOptions: {
@@ -46,7 +51,7 @@ export class UserStack extends cdk.Stack {
         const getAllUser = createLambda({
             scope: this,
             id: 'GetAllUser',
-            entry: 'lambda/users/getAllUserHandler.ts',
+            entry: 'src/lambda/users/getAllUserHandler.ts',
             environment: {
                 ...commonEnv,
                 QUEUE_URL: queue.queueUrl
@@ -55,7 +60,7 @@ export class UserStack extends cdk.Stack {
         const getByIdUser = createLambda({
             scope: this,
             id: 'GetByIdUser',
-            entry: 'lambda/users/getByIdUserHandler.ts',
+            entry: 'src/lambda/users/getByIdUserHandler.ts',
             environment: {
                   ...commonEnv,
                   QUEUE_URL: queue.queueUrl
@@ -64,7 +69,7 @@ export class UserStack extends cdk.Stack {
         const createUser = createLambda({
             scope: this,
             id: 'CreateUser',
-            entry: 'lambda/users/createUserHandler.ts',
+            entry: 'src/lambda/users/createUserHandler.ts',
             environment: {
                 ...commonEnv,
                 QUEUE_URL: queue.queueUrl
@@ -74,7 +79,7 @@ export class UserStack extends cdk.Stack {
         const deleteUser = createLambda({
             scope: this,
             id: 'DeleteUser',
-            entry: 'lambda/users/deleteUserHandler.ts',
+            entry: 'src/lambda/users/deleteUserHandler.ts',
             environment: {
                  ...commonEnv,
                 QUEUE_URL: queue.queueUrl
@@ -83,7 +88,7 @@ export class UserStack extends cdk.Stack {
         const updateUser = createLambda({
             scope: this,
             id: 'UpdateUser',
-            entry: 'lambda/users/updateUserHandler.ts',
+            entry: 'src/lambda/users/updateUserHandler.ts',
             environment: {
                ...commonEnv,
                 QUEUE_URL: queue.queueUrl
@@ -92,7 +97,7 @@ export class UserStack extends cdk.Stack {
         const uploadUrlUsersFn = createLambda({
             scope: this,
             id: 'UploadUrlUser',
-            entry: 'lambda/users/generateUploadUrlHandler.ts',
+            entry: 'src/lambda/users/generateUploadUrlHandler.ts',
             environment: {
                 BUCKET_NAME: bucket.bucketName,
                 ...commonEnv,
@@ -102,7 +107,7 @@ export class UserStack extends cdk.Stack {
         const worker = createLambda({
             scope: this,
             id: 'Worker',
-            entry: 'lambda/workers/userWorker.ts',
+            entry: 'src/lambda/workers/userWorker.ts',
             environment: {
                 ...commonEnv,
                 QUEUE_URL: queue.queueUrl
